@@ -1,10 +1,10 @@
 package com.example.course_learning_be.controller;
+
 import com.example.course_learning_be.dto.request.UserRegisterRequest;
 import com.example.course_learning_be.dto.response.ApiResponse;
 import com.example.course_learning_be.dto.response.AuthenticationResponse;
 import com.example.course_learning_be.service.UserService;
 import lombok.RequiredArgsConstructor;
-import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
