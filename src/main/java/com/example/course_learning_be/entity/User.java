@@ -15,7 +15,8 @@ public class User {
    public static final String COLLECTION_NAME = "User";
    @Id
    private String userId;
-   private String username;
+   private String email;
+   private String fullName;
    private String password;
 
    public User() {

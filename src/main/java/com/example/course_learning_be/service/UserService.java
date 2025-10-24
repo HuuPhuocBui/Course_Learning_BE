@@ -1,5 +1,6 @@
 package com.example.course_learning_be.service;
 
+import com.example.course_learning_be.dto.request.UserRegisterRequest;
 import com.example.course_learning_be.dto.response.AuthenticationResponse;
 import com.example.course_learning_be.entity.User;
 import com.example.course_learning_be.exception.AppException;
@@ -32,25 +33,26 @@ public class UserService {
   @NonFinal
   protected static final String SIGNER_KEY = "0Fo5yxReydyX2rCmgvtI5nELTqjS+o9XPuS4r9G7NzTZ2fSoMnxu8J40VDCLgc8A";
 
-  public boolean userRegister(String username, String password) {
-    if (StringUtils.isBlank(username)) {
+  public boolean userRegister(UserRegisterRequest userRegisterRequest) {
+    if (StringUtils.isBlank(userRegisterRequest.getFullName())) {
       throw new AppException(ErrorCode.INVALID_INPUT);
     }
 
     User user = new User();
-    user.setUsername(username);
+    user.setFullName(userRegisterRequest.getFullName());
+    user.setEmail(userRegisterRequest.getEmail());
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
-    user.setPassword(passwordEncoder.encode(password));
+    user.setPassword(passwordEncoder.encode(userRegisterRequest.getPassword()));
     User savedUser = mongoService.save(user);
     return savedUser != null && savedUser.getUserId() != null;
   }
 
-  public AuthenticationResponse userLogin(String username, String password) {
-    if (StringUtils.isBlank(username)) {
+  public AuthenticationResponse userLogin(String fullname, String password) {
+    if (StringUtils.isBlank(fullname)) {
       throw new AppException(ErrorCode.INVALID_INPUT);
     }
 
-    Query query = new Query(Criteria.where("username").is(username));
+    Query query = new Query(Criteria.where("fullName").is(fullname));
     User existingUser = mongoService.findOne(query, User.class).orElse(null);
 
     PasswordEncoder passwordEncoder = new BCryptPasswordEncoder(10);
@@ -59,7 +61,7 @@ public class UserService {
       throw new AppException(ErrorCode.AUTHENTICATION);
     }
 
-    var token = generateToken(username);
+    var token = generateToken(fullname);
 
     return AuthenticationResponse.builder()
         .token(token)

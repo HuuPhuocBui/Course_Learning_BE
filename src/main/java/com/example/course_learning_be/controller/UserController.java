@@ -19,7 +19,7 @@ public class UserController {
   private final UserService userService;
   @PostMapping("/UserRegister")
   public ApiResponse<Boolean> createUser(@RequestBody UserRegisterRequest userRegisterRequest) {
-    var result = userService.userRegister(userRegisterRequest.getUsername(), userRegisterRequest.getPassword());
+    var result = userService.userRegister(userRegisterRequest);
     return ApiResponse.<Boolean>builder()
         .data(result)
         .message(result ? "User registered successfully" : "User registration failed")
@@ -28,7 +28,7 @@ public class UserController {
 
   @PostMapping("/UserLogin")
   ApiResponse<AuthenticationResponse> loginUser(@RequestBody UserRegisterRequest userRegisterRequest) {
-    var result = userService.userLogin(userRegisterRequest.getUsername(), userRegisterRequest.getPassword());
+    var result = userService.userLogin(userRegisterRequest.getFullName(), userRegisterRequest.getPassword());
     return ApiResponse.<AuthenticationResponse>builder()
         .data(result)
         .build();
