@@ -1,0 +1,27 @@
+package com.example.course_learning_be.dto.response;
+
+import com.fasterxml.jackson.annotation.JsonInclude;
+import lombok.AllArgsConstructor;
+import lombok.Builder;
+import lombok.Getter;
+import lombok.NoArgsConstructor;
+import lombok.Setter;
+
+@Getter
+@Setter
+@Builder
+@NoArgsConstructor
+@AllArgsConstructor
+@JsonInclude(JsonInclude.Include.NON_NULL)
+public class ChunkUploadResponseDTO {
+  private long chunkIndex;
+
+  private long numberOfChunkLeft;
+
+  private String chunkUrl;
+  private String thumbnailUrl;
+
+  private double chunkSize;
+  @Builder.Default
+  private boolean uploadCompleted = false;
+}

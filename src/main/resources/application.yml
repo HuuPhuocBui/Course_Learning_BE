@@ -7,3 +7,12 @@ spring:
     mongodb:
       uri: mongodb://localhost:27017/courses_learning_be
       auto-index-creation: true
+cloudinary:
+  cloud-name: dgx018ysb
+  api-key: 768183173934515
+  api-secret: SHjSST9WvonAj79mRGP1kkbazck
+
+
+jwt:
+  signer-key: 0Fo5yxReydyX2rCmgvtI5nELTqjS+o9XPuS4r9G7NzTZ2fSoMnxu8J40VDCLgc8A
+

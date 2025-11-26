@@ -29,10 +29,19 @@ dependencies {
 	implementation 'org.springframework.boot:spring-boot-starter-data-mongodb'
 	implementation 'org.springframework.boot:spring-boot-starter-security'
 	implementation 'com.nimbusds:nimbus-jose-jwt:9.32'
+	implementation 'com.cloudinary:cloudinary-core:1.38.0'
+	implementation 'com.cloudinary:cloudinary-http44:1.38.0'
+//	implementation 'com.cloudinary:cloudinary-http5:2.33.0'
+	implementation 'org.springframework.boot:spring-boot-starter-validation'
+	implementation 'com.google.firebase:firebase-admin:9.2.0'
+
 	compileOnly 'org.projectlombok:lombok'
 	annotationProcessor 'org.projectlombok:lombok'
+	implementation 'org.mapstruct:mapstruct:1.5.5.Final'
+	annotationProcessor 'org.mapstruct:mapstruct-processor:1.5.5.Final'
 	testImplementation 'org.springframework.boot:spring-boot-starter-test'
 	testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
+
 }
 
 tasks.named('test') {

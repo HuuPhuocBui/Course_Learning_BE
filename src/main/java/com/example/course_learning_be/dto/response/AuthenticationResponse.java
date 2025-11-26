@@ -13,6 +13,7 @@ import lombok.experimental.FieldDefaults;
 @Builder
 @FieldDefaults(level = AccessLevel.PRIVATE)
 public class AuthenticationResponse {
-  String token;
-  boolean authenticated;
+  private String accessToken;
+  private String countryCode;
+  private boolean userId;
 }
